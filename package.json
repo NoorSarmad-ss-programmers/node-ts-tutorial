@@ -5,15 +5,14 @@
   "author": "Ali Mihandoost <AliMihandoost@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "yarn serve",
-    "serve": "cd dist && node index.js",
-    "build": "yarn build-ts",
-    "build-ts": "rm -rf dist && tsc --build .",
-    "lint": "eslint src/**/*.ts --ignore-path .eslintignore",
+    "build": "yarn lint ;yarn build:ts",
+    "build:ts": "tsc --build .",
+    "clean": "yarn build:ts --clean && rm -rf dist node_modules && find package -name '*.js' -type f -delete && find package -name '*.d.ts' -type f -delete && find package -name '*.map' -type f -delete",
+    "lint": "eslint **/*.ts --ignore-path .eslintignore",
     "format": "yarn lint -- --fix",
-    "watch-node": "nodemon --watch dist dist/index.js",
-    "watch-node-debug": "nodemon --watch dist --inspect dist/index.js",
-    "watch-ts": "rm -rf dist && tsc -w"
+    "watch:node": "nodemon --watch src",
+    "watch:node:debug": "nodemon --watch src --inspect",
+    "watch:ts": "yarn clean ; tsc -w"
   },
   "dependencies": {
     "tslib": "^2.1.0"
