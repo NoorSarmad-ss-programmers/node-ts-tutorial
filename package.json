@@ -7,12 +7,12 @@
   "scripts": {
     "build": "yarn lint ;yarn build:ts",
     "build:ts": "tsc --build .",
-    "clean": "yarn build:ts --clean && rm -rf dist node_modules && find package -name '*.js' -type f -delete && find package -name '*.d.ts' -type f -delete && find package -name '*.map' -type f -delete",
+    "clean": "yarn build:ts --clean && find src -name '*.js' -type f -delete && find src -name '*.d.ts' -type f -delete && find src -name '*.map' -type f -delete",
     "lint": "eslint **/*.ts --ignore-path .eslintignore",
     "format": "yarn lint -- --fix",
     "watch:node": "nodemon --watch src",
     "watch:node:debug": "nodemon --watch src --inspect",
-    "watch:ts": "yarn clean ; tsc -w"
+    "watch:ts": "tsc --build --watch ."
   },
   "dependencies": {
     "tslib": "^2.1.0"
